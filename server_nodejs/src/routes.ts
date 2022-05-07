@@ -19,17 +19,5 @@ routes.post('/feedbacks', async (req, res) => {
         screenshot
     });
 
-    // await transport.sendMail({
-    //     from: 'Equipe Feedget <oi@feedget.com>',
-    //     to: 'Arthur Timoteo <destinatario@email.com>',
-    //     subject: 'Novo feedback',
-    //     html: [
-    //         `<div style="font-family: sans-serif; font-size: 16px; color: #111;">`,
-    //         `<p>Tipo do feedback: ${type}</p>`,
-    //         `<p>Comentario: ${comment}<p>`,
-    //         `</div>`
-    //     ].join('\n')
-    // });
-
     return res.status(201).send();
 });
