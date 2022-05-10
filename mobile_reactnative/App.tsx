@@ -55,8 +55,6 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-
-      <Text style={{ color: theme.colors.brand }}>adas dasd ad a d adas d ads dsadasdas as dsadasdas da as dasdasdasd a d ada sd </Text>
     </View>
   );
 }
