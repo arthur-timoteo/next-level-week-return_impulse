@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { ArrowLeft } from 'phosphor-react-native';
 import { captureScreen } from 'react-native-view-shot';
+import * as FyleSystem from 'expo-file-system';
 
 import { FeedbackType } from '../Widget';
 import { ScreenshotButton } from '../ScreenshotButton';
@@ -15,6 +16,7 @@ import { Button } from '../Button';
 
 import { styles } from './styles';
 import { theme } from '../../theme';
+import { api } from '../../libs/api';
 import { feedbackTypes } from '../../utils/feedbackTypes';
 
 interface Props {
@@ -24,7 +26,9 @@ interface Props {
 }
 
 export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props){
+    const [isSendingFeedback, setIsSendingFeedback] = useState(false);
     const [screenshot, setScreenshot] = useState<string | null>(null);
+    const [comment, setComment] = useState('');
 
     const feedbackTypeInfo = feedbackTypes[feedbackType];
 
@@ -39,6 +43,28 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
 
     function handleScreenshotRemove(){
         setScreenshot(null);
+    }
+
+    async function handleSendFeedback(){
+        if(isSendingFeedback){
+            return;
+        }
+
+        setIsSendingFeedback(true);
+        const screenshotBase64 = screenshot && await FyleSystem.readAsStringAsync(screenshot, { encoding: 'base64' }); 
+
+        try{
+            await api.post('/feedbacks', {
+                type: feedbackType,
+                screenshot: `data:image/png;base64, ${screenshotBase64}`,
+                comment
+            });
+
+            onFeedbackSent();
+        } catch(error) {
+            console.log(error);
+            setIsSendingFeedback(false);
+        }
     }
 
     return(
@@ -68,6 +94,8 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
                 style={styles.input}
                 placeholder="Algo não está funcionando bem? Queremos corrigir. Conte com detalhes o que está acontecendo..."
                 placeholderTextColor={theme.colors.text_secondary}
+                autoCorrect={false}
+                onChangeText={setComment}
             />
 
             <View style={styles.footer}>
@@ -78,7 +106,8 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
                 />
 
                 <Button 
-                    isLoading={false}
+                    onPress={handleSendFeedback}
+                    isLoading={isSendingFeedback}
                 />
             </View>
         </View>
