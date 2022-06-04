@@ -38,6 +38,7 @@ Server with Node.JS and TypeScript:
 - Prisma
 - Jest
 - Cors
+- [Railway](https://railway.app/)
 
 Mobile application with Expo and TypeScript:
 
@@ -63,7 +64,32 @@ You can view the project layout through this [link](https://www.figma.com/file/m
 
 ## How to run
 
+- Clone the repository;
+- Access repository folder;
 
+### Server
+- Access server folder;
+- Install dependencies with `npm install`;
+- Change provider 'postgresl' to 'sqlite' in the file server_nodejs\prisma\schema.prisma;
+- Change provider 'postgresl' to 'sqlite' in the file server_nodejs\prisma\migrations\migration_lock.toml;
+- Create file `.env` in the directory server_nodejs\;
+- Insert `DATABASE_URL="file:./dev.db"` in the file server_nodejs\.env;
+- Run command `npx prisma migrate dev` to execute migrations;
+- Run command `npm run dev` to start server;
+
+### Web
+- Access web folder;
+- Install dependencies with `npm install`;
+- Create file web_react\.env.local; 
+- Add `VITE_API_URL=http://your machine's ip:3333` in the file web_react\.env.local;
+- Run command `npm run dev` to start application;
+
+### Mobile
+- Access mobile folder;
+- Install dependencies with `npm install`;
+- Change the value of the `baseURL` parameter to `http://your machine's ip:3333` in the file mobile_reactnative\src\libs\api.ts; 
+- Start the expo with `expo start`, `yarn start` or `npm start`;
+- To execute mobile aplication in the a physical cellphone install Expo Go or use a emulator;
 
 ## License
 
