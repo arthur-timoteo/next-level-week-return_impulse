@@ -31,6 +31,7 @@ Web application with React JS and TypeScript:
 - [Phosphor Icons](https://github.com/phosphor-icons/phosphor-home)
 - [html2canvas](https://www.npmjs.com/package/html2canvas)
 - [axios](https://www.npmjs.com/package/axios)
+- [Vercel](https://vercel.com)
 
 Server with Node.JS and TypeScript:
 
