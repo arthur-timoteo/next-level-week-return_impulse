@@ -6,7 +6,7 @@
 
 ## Project
 
-Feedget is a widget that can be inserted in websites and mobile apps to collect users feedback. First the user select a category to your feedback, then he must write about your feedback. The user can chose take or not a screenshot to send together with feedback. One email is send to adminstrator with the eedback.
+Feedget is a widget that can be inserted in websites and mobile apps to collect users feedback. First the user select a category to your feedback, then he must write about your feedback. The user can chose take or not a screenshot to send together with feedback. One email is send to adminstrator with the feedback.
 
 ## Features
 
@@ -14,6 +14,7 @@ Feedget is a widget that can be inserted in websites and mobile apps to collect 
 - Screenshot;
 - Use REST API;
 - Send email with [Mailtrap](https://mailtrap.io/);
+- Continuous integration (CI) is implemented using Github with Vercel e Railway;
 
 ## Technologies and Libraries
 
